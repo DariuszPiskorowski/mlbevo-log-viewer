@@ -44,6 +44,16 @@ export function ResultsTable({ rows }: ResultsTableProps) {
     });
   }, [filtered, sortKey, sortDir]);
 
+  /** Wrap long hex strings (≥16 hex chars) every 16 chars (8 bytes) for readability */
+  const formatHexValue = (val: string) => {
+    const trimmed = val.trim();
+    if (/^[0-9A-Fa-f]{16,}$/.test(trimmed)) {
+      const chunks = trimmed.match(/.{1,16}/g) ?? [trimmed];
+      return <>{chunks.map((c, i) => <span key={i} className="block">{c}</span>)}</>;
+    }
+    return val;
+  };
+
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
       setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
@@ -109,7 +119,7 @@ export function ResultsTable({ rows }: ResultsTableProps) {
                     <td className="px-4 py-2.5 font-mono text-xs font-medium whitespace-nowrap">{row.externalId}</td>
                     <td className="px-4 py-2.5 max-w-xs truncate" title={row.text}>{row.text}</td>
                     <td className="px-4 py-2.5 font-mono text-xs whitespace-nowrap">{row.lowerLimit}</td>
-                    <td className="px-4 py-2.5 font-mono text-xs whitespace-nowrap">{row.value}</td>
+                    <td className="px-4 py-2.5 font-mono text-xs">{formatHexValue(row.value)}</td>
                     <td className="px-4 py-2.5 font-mono text-xs whitespace-nowrap">{row.upperLimit}</td>
                     <td className="px-4 py-2.5 text-xs whitespace-nowrap">{row.unit}</td>
                     <td className="px-4 py-2.5"><ResultBadge value={row.result} /></td>
