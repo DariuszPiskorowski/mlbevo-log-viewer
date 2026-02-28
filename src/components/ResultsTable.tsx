@@ -44,13 +44,32 @@ export function ResultsTable({ rows }: ResultsTableProps) {
     });
   }, [filtered, sortKey, sortDir]);
 
-  /** Wrap long hex strings (≥16 hex chars) every 16 chars (8 bytes) for readability */
+  /**
+   * Formatowanie wartości hex:
+   * - "AA BB CC ..." (bajty rozdzielone spacją) => zawijanie co 8 bajtów
+   * - "AABBCC..." (ciągły hex) => zawijanie co 8 znaków
+   */
   const formatHexValue = (val: string) => {
     const trimmed = val.trim();
-    if (/^[0-9A-Fa-f]{16,}$/.test(trimmed)) {
+
+    // Przypadek 1: bajty oddzielone spacjami (np. "07 00 FF 00 ...")
+    const bytes = trimmed.match(/[0-9A-Fa-f]{2}/g);
+    const isByteArray = !!bytes && bytes.join('').length === trimmed.replace(/\s+/g, '').length;
+
+    if (isByteArray && bytes.length >= 8) {
+      const chunks: string[] = [];
+      for (let i = 0; i < bytes.length; i += 8) {
+        chunks.push(bytes.slice(i, i + 8).join(' '));
+      }
+      return <>{chunks.map((c, i) => <span key={i} className="block">{c}</span>)}</>;
+    }
+
+    // Przypadek 2: ciągły hex bez spacji
+    if (/^[0-9A-Fa-f]{8,}$/.test(trimmed)) {
       const chunks = trimmed.match(/.{1,8}/g) ?? [trimmed];
       return <>{chunks.map((c, i) => <span key={i} className="block">{c}</span>)}</>;
     }
+
     return val;
   };
 
