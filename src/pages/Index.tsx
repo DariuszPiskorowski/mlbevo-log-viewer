@@ -26,7 +26,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-[image:var(--header-gradient)] text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+        <div className="mx-auto max-w-[100rem] px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-primary-foreground/10 p-2.5">
               <Cpu className="h-6 w-6" />
@@ -39,7 +39,7 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main className="mx-auto max-w-[100rem] px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {!parsedLog ? (
           <div className="space-y-6">
             <FileUploader onFileLoaded={handleFileLoaded} />
