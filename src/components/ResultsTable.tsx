@@ -61,13 +61,13 @@ export function ResultsTable({ rows }: ResultsTableProps) {
       for (let i = 0; i < bytes.length; i += 8) {
         chunks.push(bytes.slice(i, i + 8).join(' '));
       }
-      return <>{chunks.map((c, i) => <span key={i} className="block">{c}</span>)}</>;
+      return <>{chunks.map((c, i) => <span key={i} className="block whitespace-nowrap">{c}</span>)}</>;
     }
 
     // Przypadek 2: ciągły hex bez spacji
     if (/^[0-9A-Fa-f]{8,}$/.test(trimmed)) {
       const chunks = trimmed.match(/.{1,8}/g) ?? [trimmed];
-      return <>{chunks.map((c, i) => <span key={i} className="block">{c}</span>)}</>;
+      return <>{chunks.map((c, i) => <span key={i} className="block whitespace-nowrap">{c}</span>)}</>;
     }
 
     return val;
