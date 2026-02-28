@@ -32,7 +32,7 @@ const Index = () => {
               <Cpu className="h-6 w-6" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight">Door Module Test Report</h1>
+              <h1 className="text-xl font-bold tracking-tight">MLBevo Door Module Test Report</h1>
               <p className="text-sm text-primary-foreground/70">Automotive diagnostic log viewer</p>
             </div>
           </div>
@@ -43,25 +43,6 @@ const Index = () => {
         {!parsedLog ? (
           <div className="space-y-6">
             <FileUploader onFileLoaded={handleFileLoaded} />
-            <div className="text-center space-y-2">
-              <p className="text-sm text-muted-foreground">Or try a sample file:</p>
-              <div className="flex justify-center gap-3">
-                <button
-                  onClick={() => loadSample('/sample-data/FlowDump_Success.txt')}
-                  className="inline-flex items-center gap-2 rounded-lg border bg-card px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted transition-colors"
-                >
-                  <FileText className="h-4 w-4 text-pass" />
-                  Successful Log
-                </button>
-                <button
-                  onClick={() => loadSample('/sample-data/FlowDump_Failed.txt')}
-                  className="inline-flex items-center gap-2 rounded-lg border bg-card px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted transition-colors"
-                >
-                  <FileText className="h-4 w-4 text-fail" />
-                  Failed Log
-                </button>
-              </div>
-            </div>
           </div>
         ) : (
           <div className="space-y-6">
