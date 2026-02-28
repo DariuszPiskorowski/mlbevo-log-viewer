@@ -21,13 +21,10 @@ const COLUMNS: { key: SortKey; label: string }[] = [
   { key: 'statusText', label: 'Status Text' },
 ];
 
-const PAGE_SIZE = 25;
-
 export function ResultsTable({ rows }: ResultsTableProps) {
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState<SortKey | null>(null);
   const [sortDir, setSortDir] = useState<SortDir>('asc');
-  const [page, setPage] = useState(0);
 
   const filtered = useMemo(() => {
     if (!search) return rows;
@@ -46,10 +43,6 @@ export function ResultsTable({ rows }: ResultsTableProps) {
       return sortDir === 'asc' ? cmp : -cmp;
     });
   }, [filtered, sortKey, sortDir]);
-
-  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
-  const safePage = Math.min(page, totalPages - 1);
-  const paged = sorted.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -70,7 +63,7 @@ export function ResultsTable({ rows }: ResultsTableProps) {
             type="text"
             placeholder="Search rows…"
             value={search}
-            onChange={(e) => { setSearch(e.target.value); setPage(0); }}
+            onChange={(e) => setSearch(e.target.value)}
             className="w-full rounded-lg border bg-card py-2 pl-10 pr-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
@@ -101,14 +94,14 @@ export function ResultsTable({ rows }: ResultsTableProps) {
               </tr>
             </thead>
             <tbody>
-              {paged.length === 0 ? (
+              {sorted.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="px-4 py-8 text-center text-muted-foreground">
                     No matching rows found.
                   </td>
                 </tr>
               ) : (
-                paged.map((row, i) => (
+                sorted.map((row, i) => (
                   <tr
                     key={`${row.externalId}-${i}`}
                     className="border-t hover:bg-muted/40 transition-colors even:bg-muted/20"
@@ -128,30 +121,10 @@ export function ResultsTable({ rows }: ResultsTableProps) {
           </table>
         </div>
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-between border-t px-4 py-3 text-sm">
-            <span className="text-muted-foreground">
-              {sorted.length} result{sorted.length !== 1 ? 's' : ''} · Page {safePage + 1} of {totalPages}
-            </span>
-            <div className="flex gap-1">
-              <button
-                onClick={() => setPage((p) => Math.max(0, p - 1))}
-                disabled={safePage === 0}
-                className="rounded-md border px-3 py-1 text-xs font-medium disabled:opacity-40 hover:bg-muted transition-colors"
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-                disabled={safePage >= totalPages - 1}
-                className="rounded-md border px-3 py-1 text-xs font-medium disabled:opacity-40 hover:bg-muted transition-colors"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        )}
+        {/* Row count */}
+        <div className="border-t px-4 py-3 text-sm text-muted-foreground">
+          {sorted.length} result{sorted.length !== 1 ? 's' : ''}
+        </div>
       </div>
     </div>
   );
