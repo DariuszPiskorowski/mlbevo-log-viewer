@@ -48,7 +48,7 @@ export function ResultsTable({ rows }: ResultsTableProps) {
   const formatHexValue = (val: string) => {
     const trimmed = val.trim();
     if (/^[0-9A-Fa-f]{16,}$/.test(trimmed)) {
-      const chunks = trimmed.match(/.{1,16}/g) ?? [trimmed];
+      const chunks = trimmed.match(/.{1,8}/g) ?? [trimmed];
       return <>{chunks.map((c, i) => <span key={i} className="block">{c}</span>)}</>;
     }
     return val;
