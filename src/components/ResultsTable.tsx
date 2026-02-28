@@ -138,7 +138,7 @@ export function ResultsTable({ rows }: ResultsTableProps) {
                     <td className="px-4 py-2.5 font-mono text-xs font-medium whitespace-nowrap">{row.externalId}</td>
                     <td className="px-4 py-2.5 max-w-xs truncate" title={row.text}>{row.text}</td>
                     <td className="px-4 py-2.5 font-mono text-xs whitespace-nowrap">{row.lowerLimit}</td>
-                    <td className="px-4 py-2.5 font-mono text-xs">{formatHexValue(row.value)}</td>
+                    <td className="px-4 py-2.5 font-mono text-xs min-w-[26ch]">{formatHexValue(row.value)}</td>
                     <td className="px-4 py-2.5 font-mono text-xs whitespace-nowrap">{row.upperLimit}</td>
                     <td className="px-4 py-2.5 text-xs whitespace-nowrap">{row.unit}</td>
                     <td className="px-4 py-2.5"><ResultBadge value={row.result} /></td>
