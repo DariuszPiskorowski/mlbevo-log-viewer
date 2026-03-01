@@ -1,0 +1,79 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:8080",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "MLBevo Log Viewer",
+    "version": "1.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      },
+      "dialog": {
+        "all": false,
+        "open": true,
+        "save": true
+      },
+      "fs": {
+        "all": false,
+        "readFile": true,
+        "readDir": true,
+        "scope": ["$APPDATA/*", "$HOME/*", "$DESKTOP/*", "$DOWNLOAD/*", "$DOCUMENT/*"]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/icon.ico"
+      ],
+      "identifier": "com.mlbevo.logviewer",
+      "longDescription": "MLBevo Log Viewer - Professional log file analysis tool for viewing and analyzing FlowDump log files.",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "MLBevo Log Viewer",
+      "targets": ["nsis"],
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "height": 800,
+        "resizable": true,
+        "title": "MLBevo Log Viewer",
+        "width": 1200,
+        "minWidth": 800,
+        "minHeight": 600
+      }
+    ]
+  }
+}
