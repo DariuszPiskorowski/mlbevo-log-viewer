@@ -65,6 +65,10 @@ const Index = () => {
           </div>
         )}
       </main>
+
+      <footer className="mx-auto max-w-[100rem] px-4 sm:px-6 lg:px-8 pb-4">
+        <p className="text-[10px] text-muted-foreground/50 text-right">Designed for AQP1 by D. Piskorowski</p>
+      </footer>
     </div>
   );
 };
