@@ -59,4 +59,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LogReader-exe
-          path: src-tauri/target/x86_64-pc-windows-msvc/release/*.exe# TODO: Add CI/CD pipeline for .exe conversion
+          path: src-tauri/target/x86_64-pc-windows-msvc/release/*.exe
