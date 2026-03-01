@@ -33,7 +33,7 @@ const Index = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-tight">MLBevo Door Module Test Report</h1>
-              <p className="text-sm text-primary-foreground/70">Automotive diagnostic log viewer</p>
+              <p className="text-sm text-primary-foreground/70">AQP1 Testman Log Viewer</p>
             </div>
           </div>
         </div>
