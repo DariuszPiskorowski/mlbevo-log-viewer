@@ -30,7 +30,7 @@
       }
     },
     "bundle": {
-      "active": true,
+      "active": false,
       "category": "DeveloperTool",
       "copyright": "",
       "deb": {
@@ -38,20 +38,13 @@
       },
       "externalBin": [],
       "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
         "icons/icon.ico"
       ],
       "identifier": "com.mlbevo.logviewer",
-      "longDescription": "MLBevo Log Viewer - Professional log file analysis tool for viewing and analyzing FlowDump log files.",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": [],
       "shortDescription": "MLBevo Log Viewer",
-      "targets": ["nsis"],
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
