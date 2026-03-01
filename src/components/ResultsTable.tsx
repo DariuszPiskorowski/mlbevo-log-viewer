@@ -65,7 +65,7 @@ export function ResultsTable({ rows }: ResultsTableProps) {
     }
 
     // Przypadek 2: ciągły hex bez spacji
-    if (/^[0-9A-Fa-f]{8,}$/.test(trimmed)) {
+    if (/^[0-9A-Fa-f]{17,}$/.test(trimmed)) {
       const chunks = trimmed.match(/.{1,8}/g) ?? [trimmed];
       return <>{chunks.map((c, i) => <span key={i} className="block whitespace-nowrap">{c}</span>)}</>;
     }
